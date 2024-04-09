@@ -7,7 +7,7 @@
         {{ title }}
         </h3>
         <p class="text-gray-600 absolute bottom-4 right-4">
-        {{ time }}
+        {{ time }} min
         </p>
     </div>
   </div>

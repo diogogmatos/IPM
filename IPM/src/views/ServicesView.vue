@@ -8,7 +8,7 @@
         <Dropdown :options="colorOptions" class="" :placeholder="'Duração (Crescente)'"></Dropdown>
       </div>
       <div class="grid grid-cols-2 gap-x-16 gap-y-4 mx-auto">
-        <Box v-for="(task, index) in tasks" :key="index" :title="task.title" :time="task.time" :status="task.status" />
+        <Box v-for="(task, index) in serviceDefinitions" :key="index" :title="task.descr" :time="task.duração" :status="Realizado" />
       </div>
     </div>
   </div>
@@ -19,6 +19,7 @@ import Popup from '@/components/Popup.vue';
 import Dropdown from '@/components/Dropdown.vue';
 import Box from '@/components/Box.vue';
 import Sidebar from '@/components/Sidebar.vue';
+import { list_ServiceDefinitions } from "../api.ts";
 
 export default {
   components: {
@@ -50,8 +51,23 @@ export default {
         { title: "Mudar Óleo", time: "30min", status: "Pendente" },
         { title: "Substituir Pneus", time: "40min", status: "Realizado" },
         { title: "Mudar Óleo", time: "30min", status: "Pendente" },
-      ]
+      ],
+      serviceDefinitions: []
     };
+  },
+    mounted() {
+    this.fetchServiceDefinitions();
+  },
+  methods: {
+    async fetchServiceDefinitions() {
+      try {
+        const definitions = await list_ServiceDefinitions();
+        this.serviceDefinitions = definitions;
+        console.log("Service definitions:", definitions);
+      } catch (error) {
+        console.error("Error fetching service definitions:", error);
+      }
+    }
   }
 };
 </script>

@@ -1,11 +1,7 @@
 <template>
   <div class="relative bg-white rounded-lg shadow-2xl p-4 flex flex-col justify-between w-84">
-    <span v-if="status === 'Realizado'" class="text-green-800 font-bold bg-green-200 w-fit px-2 rounded-xl">
-      Realizado
-    </span>
-    <span v-else class="text-red-800 font-bold bg-red-200 w-fit px-2 rounded-xl">
-      Pendente
-    </span>
+    <Tag v-if="status === 'Realizado'" color="green" text="Realizado" />
+    <Tag v-else color="red" text="Pendente" />
     <div class="flex flex-row items-center space-x-4">
         <h3 class="text-lg font-bold text-gray-800">
         {{ title }}
@@ -18,7 +14,11 @@
 </template>
 
 <script>
+  import Tag from '@/components/Tag.vue';
 export default {
+  components: {
+    Tag
+  },
   props: {
     title: String,
     time: String,

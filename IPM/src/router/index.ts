@@ -9,22 +9,21 @@ const router = createRouter({
       component: () => import('../views/LoginView.vue')
     },
     {
-      path: "/register",
-      name: "Register",
-      component: () => import("../views/RegisterView.vue")
+      path: '/register',
+      name: 'Register',
+      component: () => import('../views/RegisterView.vue')
     },
     {
-      path: "/",
-      name: "Services",
-      component: () => import("../views/ServicesView.vue")
+      path: '/',
+      name: 'Services',
+      component: () => import('../views/ServicesView.vue')
     },
     {
-      path: "/services/:id",
-      name: "Service",
-      meta: { title: "Service" },
-      component: () => import("../views/ServiceView.vue")
+      path: '/services/:id',
+      name: 'Service',
+      meta: { title: 'Service' },
+      component: () => import('../views/ServiceView.vue')
     }
-
   ]
 })
 

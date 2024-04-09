@@ -1,0 +1,49 @@
+<template>
+  <div
+    id="Sidebar"
+    class="bg-white min-w-96 rounded-r-3xl pt-12 border-r shadow-lg space-y-12 h-screen overflow-hidden"
+  >
+    <img src="../../assets/logo.svg" alt="logo" class="w-32 h-32 mx-auto" />
+    <h1 class="text-center text-2xl font-[700]">Posto #1</h1>
+    <nav
+      class="flex flex-col justify-between font-[600] text-2xl text-neutral-400 h-[calc(100dvh-304px)]"
+    >
+      <div>
+        <a href="#" class="flex bg-primary/20 p-3 w-full justify-center space-x-3 text-primary">
+          <i class="bi bi-tools"></i>
+          <span>Serviços Atribuídos</span>
+        </a>
+        <a
+          href="#"
+          class="flex bg-neutral-100 p-3 w-full justify-center space-x-3 hover:text-primary hover:bg-primary/20 transition-all"
+        >
+          <i class="bi bi-clock-history"></i>
+          <span>Histórico Serviços</span>
+        </a>
+      </div>
+      <div>
+        <a
+          href="#"
+          class="flex bg-neutral-100 p-3 px-12 w-full justify-between hover:text-primary hover:bg-primary/20 transition-all"
+        >
+          <div class="space-x-3">
+            <i class="bi bi-person-fill"></i>
+            <span>Diogo Matos</span>
+          </div>
+          <span class="font-inter">-></span>
+        </a>
+        <a
+          href="#"
+          class="flex bg-red-100 text-red-600 p-3 px-12 w-full space-x-3 hover:text-white hover:bg-red-600 transition-all"
+        >
+          <i class="bi bi-door-open-fill"></i>
+          <span>Sair</span>
+        </a>
+      </div>
+    </nav>
+  </div>
+</template>
+
+<script lang="ts">
+export default {}
+</script>

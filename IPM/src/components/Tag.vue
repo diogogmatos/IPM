@@ -1,5 +1,5 @@
 <template>
-  <span :class="`text-${color}-800 font-bold bg-${color}-200 w-fit px-${padding_x} py-${padding_y} rounded-xl`">
+  <span :class="`text-${color}-600 font-bold bg-${color}-100 w-fit px-3 py-1 rounded-xl text-sm`">
     {{ text }}
   </span>
 </template>
@@ -17,12 +17,12 @@ export default {
     },
     padding_x: {
       type: String,
-      default: 2
+      default: '3'
     },
-    padding_y:{
-        type: String,
-        default: 1
+    padding_y: {
+      type: String,
+      default: '1'
     }
   }
-};
+}
 </script>

@@ -11,6 +11,10 @@ export default {
       width:{
         84: "21.5rem",
       }
+    },
+    fontFamily: {
+      'display': ['Inter', 'sans-serif'],
+      'inter': ['Inter', 'sans-serif'],
     }
   },
   plugins: [],

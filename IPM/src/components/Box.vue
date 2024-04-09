@@ -1,20 +1,23 @@
 <template>
-  <div class="relative bg-white rounded-lg shadow-2xl p-4 flex flex-col justify-between w-84">
+  <a
+    :href="`/services/${id}`"
+    class="relative bg-white rounded-2xl border shadow-md p-4 flex flex-col w-96 space-y-2 hover:-translate-y-1 hover:shadow-lg transition-all"
+  >
     <Tag v-if="status === 'Realizado'" color="green" text="Realizado" />
     <Tag v-else color="red" text="Pendente" />
-    <div class="flex flex-row items-center space-x-4">
-        <h3 class="text-lg font-bold text-gray-800">
+    <div class="flex flex-row items-center space-x-4 justify-between h-full">
+      <h1 class="text-2xl font-[600]">
         {{ title }}
-        </h3>
-        <p class="text-gray-600 absolute bottom-4 right-4">
-        {{ time }} min
-        </p>
+      </h1>
+      <p class="text-neutral-400 font-semibold text-xl min-w-fit text-nowrap">
+        <i class="bi bi-hourglass-split"></i> {{ time }} min
+      </p>
     </div>
-  </div>
+  </a>
 </template>
 
 <script>
-  import Tag from '@/components/Tag.vue';
+import Tag from '@/components/Tag.vue'
 export default {
   components: {
     Tag
@@ -23,6 +26,7 @@ export default {
     title: String,
     time: String,
     status: String,
-  },
-};
+    id: String
+  }
+}
 </script>

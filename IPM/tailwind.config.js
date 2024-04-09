@@ -5,7 +5,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "#FEA500"
+        primary: "#FEA500",
+        primaryHover: "#E59400",
+      },
+      width:{
+        84: "21.5rem",
       }
     }
   },

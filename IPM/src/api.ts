@@ -20,12 +20,12 @@ export async function get_ServiceDefinition(id: string) {
 }
 
 export async function list_vehicleTypes() {
-  const response = await API.get('/vehicle-types')
+  const response = await API.get('/vehicles')
   return response.data
 }
 
 export async function get_vehicleType(id: string) {
-  const response = await API.get(`/vehicle-types/${id}`)
+  const response = await API.get(`/vehicles/${id}`)
   return response.data
 }
 

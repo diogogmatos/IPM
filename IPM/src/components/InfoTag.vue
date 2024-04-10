@@ -14,14 +14,6 @@ export default {
     text: {
       type: String,
       required: true
-    },
-    padding_x: {
-      type: String,
-      default: '3'
-    },
-    padding_y: {
-      type: String,
-      default: '1'
     }
   }
 }

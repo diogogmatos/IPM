@@ -23,9 +23,9 @@
         v-for="(task, index) in serviceDefinitions"
         :key="index"
         :id="task.id"
-        :title="task.descr"
-        :time="task.duração"
-        :status="Realizado"
+        :title="services[index]['descr']"
+        :time="services[index]['duração']"
+        :status="task.estado"
       />
     </div>
   </Layout>
@@ -35,7 +35,7 @@
 import AppDropdown from '@/components/AppDropdown.vue'
 import Box from '@/components/AppBox.vue'
 import Layout from '@/components/Layout/Layout.vue'
-import { list_ServiceDefinitions } from '../api.ts'
+import * as api from '../api.ts'
 
 export default {
   components: {
@@ -49,9 +49,14 @@ export default {
     },
     async fetchServiceDefinitions() {
       try {
-        const definitions = await list_ServiceDefinitions()
+        const definitions = await api.list_Services()
+        const services = []
         this.serviceDefinitions = definitions
-        console.log('Service definitions:', definitions)
+        for (let i = 0; i < definitions.length; i++) {
+          const service = await api.get_ServiceDefinition(definitions[i]['service-definitionId'])
+          services.push(service)
+        }
+        this.services = services
       } catch (error) {
         console.error('Error fetching service definitions:', error)
       }
@@ -60,23 +65,8 @@ export default {
   data() {
     return {
       colorOptions: ['Red', 'Green', 'Blue'],
-      tasks: [
-        { title: 'Substituir Pneus', time: '40min', status: 'Realizado' },
-        { title: 'Mudar Óleo', time: '30min', status: 'Pendente' },
-        { title: 'Substituir Pneus', time: '40min', status: 'Realizado' },
-        { title: 'Mudar Óleo', time: '30min', status: 'Pendente' },
-        { title: 'Substituir Pneus', time: '40min', status: 'Realizado' },
-        { title: 'Mudar Óleo', time: '30min', status: 'Pendente' },
-        { title: 'Substituir Pneus', time: '40min', status: 'Realizado' },
-        { title: 'Mudar Óleo', time: '30min', status: 'Pendente' },
-        { title: 'Substituir Pneus', time: '40min', status: 'Realizado' },
-        { title: 'Mudar Óleo', time: '30min', status: 'Pendente' },
-        { title: 'Substituir Pneus', time: '40min', status: 'Realizado' },
-        { title: 'Mudar Óleo', time: '30min', status: 'Pendente' },
-        { title: 'Substituir Pneus', time: '40min', status: 'Realizado' },
-        { title: 'Mudar Óleo', time: '30min', status: 'Pendente' }
-      ],
-      serviceDefinitions: []
+      serviceDefinitions: [],
+      services: []
     }
   },
   mounted() {

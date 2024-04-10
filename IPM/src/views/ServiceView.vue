@@ -11,35 +11,37 @@
         <i class="bi bi-arrow-left-short"></i>
       </a>
       <div class="flex flex-col items-center">
-        <h1 class="text-5xl font-bold mt-24">Substituir Pneus</h1>
-        <h2 class="text-2xl font-semibold mt-4 text-zinc-400">Detalhes</h2>
+        <h1 class="text-5xl font-bold mt-24">{{ serviceDefinition.descr }}</h1>
+        <h2 class="text-2xl font-semibold mt-4 text-zinc-400">{{ service['descrição'] }}</h2>
         <div class="flex flex-row space-x-4 mt-4">
-          <Tag color="green" text="Realizado" />
-          <Tag color="red" text="Pendente" />
-          <Tag color="orange" text="Em andamento" />
+          <Tag color="green" :text="`${service.estado}`" />
+          <Tag color="red" :text="`${service.agendamento}`" />
         </div>
         <div class="flex flex-row space-x-32 mt-8">
           <div class="flex flex-col">
             <h1 class="text-4xl font-semibold mt-4">Cliente</h1>
             <div class="flex flex-col space-x-4 mt-2">
               <span class="text-md">Nome</span>
-              <p class="text-xl font-semibold">Diogo Matos</p>
+              <p class="text-xl font-semibold">{{ client.nome }}</p>
             </div>
             <div class="flex flex-col space-x-4 mt-4">
               <span class="text-md">Email</span>
-              <p class="text-xl font-semibold">js@email.com</p>
+              <p class="text-xl font-semibold">{{ client.email }}</p>
             </div>
             <div class="flex flex-col space-x-4 mt-4">
               <span class="text-md">Telefone</span>
-              <p class="text-xl font-semibold">912345678</p>
+              <p class="text-xl font-semibold">{{ client.telefone }}</p>
             </div>
           </div>
           <div class="flex flex-col space-y-2">
             <h1 class="text-4xl font-semibold mt-4">Veículo</h1>
-            <Tag color="red" text="08-25-AA" padding_x="4" padding_y="2" />
-            <Tag color="red" text="08-25-AA" padding_x="4" padding_y="2" />
-            <Tag color="red" text="08-25-AA" padding_x="4" padding_y="2" />
-            <Tag color="red" text="08-25-AA" padding_x="4" padding_y="2" />
+            <Tag color="red" :text="`${service.vehicleId}`" />
+            <Tag color="red" :text="`${vehicle['vehicle-typeId']}`" />
+            <Tag color="red" :text="`${vehicle.kms} Km`" />
+            <Tag
+              color="red"
+              :text="`${vehicle.cilindrada === undefined ? vehicle.potencia : vehicle.cilindrada} cm³`"
+            />
           </div>
         </div>
         <div class="mt-4 flex flex-row space-x-4 mt-8">
@@ -78,35 +80,37 @@
         </div>
       </div>
       <div class="flex flex-col items-center w-1/3">
-        <h1 class="text-5xl font-bold mt-24">Substituir Pneus</h1>
-        <h2 class="text-2xl font-semibold mt-4 text-zinc-400">Detalhes</h2>
+        <h1 class="text-5xl font-bold mt-24">{{ serviceDefinition.descr }}</h1>
+        <h2 class="text-2xl font-semibold mt-4 text-zinc-400">{{ service['descrição'] }}</h2>
         <div class="flex flex-row space-x-4 mt-4">
-          <Tag color="green" text="Realizado" />
-          <Tag color="red" text="Pendente" />
-          <Tag color="orange" text="Em andamento" />
+          <Tag color="green" :text="`${service.estado}`" />
+          <Tag color="red" :text="`${service.agendamento}`" />
         </div>
         <div class="flex flex-row space-x-32 mt-8">
           <div class="flex flex-col">
             <h1 class="text-4xl font-semibold mt-4">Cliente</h1>
             <div class="flex flex-col space-x-4 mt-2">
               <span class="text-md">Nome</span>
-              <p class="text-xl font-semibold">Diogo Matos</p>
+              <p class="text-xl font-semibold">{{ client.nome }}</p>
             </div>
             <div class="flex flex-col space-x-4 mt-4">
               <span class="text-md">Email</span>
-              <p class="text-xl font-semibold">js@email.com</p>
+              <p class="text-xl font-semibold">{{ client.email }}</p>
             </div>
             <div class="flex flex-col space-x-4 mt-4">
               <span class="text-md">Telefone</span>
-              <p class="text-xl font-semibold">912345678</p>
+              <p class="text-xl font-semibold">{{ client.telefone }}</p>
             </div>
           </div>
           <div class="flex flex-col space-y-2">
             <h1 class="text-4xl font-semibold mt-4">Veículo</h1>
-            <Tag color="red" text="08-25-AA" padding_x="4" padding_y="2" />
-            <Tag color="red" text="08-25-AA" padding_x="4" padding_y="2" />
-            <Tag color="red" text="08-25-AA" padding_x="4" padding_y="2" />
-            <Tag color="red" text="08-25-AA" padding_x="4" padding_y="2" />
+            <Tag color="red" :text="`${service.vehicleId}`" />
+            <Tag color="red" :text="`${vehicle['vehicle-typeId']}`" />
+            <Tag color="red" :text="`${vehicle.kms} Km`" />
+            <Tag
+              color="red"
+              :text="`${vehicle.cilindrada === undefined ? vehicle.potencia : vehicle.cilindrada} cm³`"
+            />
           </div>
         </div>
         <div class="mt-4 flex flex-row space-x-4 mt-8">
@@ -133,12 +137,11 @@
         <img src="../assets/left_arrow.svg" alt="arrow-left" class="w-8 h-8 inline-block" />
       </a>
       <div class="flex flex-col items-center">
-        <h1 class="text-5xl font-bold mt-24">Substituir Pneus</h1>
-        <h2 class="text-2xl font-semibold mt-4 text-zinc-400">Detalhes</h2>
+        <h1 class="text-5xl font-bold mt-24">{{ serviceDefinition.descr }}</h1>
+        <h2 class="text-2xl font-semibold mt-4 text-zinc-400">{{ service['descrição'] }}</h2>
         <div class="flex flex-row space-x-4 mt-4">
-          <Tag color="green" text="Realizado" />
-          <Tag color="red" text="Pendente" />
-          <Tag color="orange" text="Em andamento" />
+          <Tag color="green" :text="`${service.estado}`" />
+          <Tag color="red" :text="`${service.agendamento}`" />
         </div>
         <div class="w-full">
           <h1 class="text-2xl font-bold mt-16">Motivo</h1>
@@ -160,6 +163,7 @@
 
 <script>
 import Tag from '@/components/Tag.vue'
+import * as api from '../api.ts'
 
 export default {
   components: {
@@ -168,22 +172,26 @@ export default {
   data() {
     return {
       inProgress: false,
-      inSuspension: false
+      inSuspension: false,
+      service: [],
+      serviceDefinition: [],
+      vehicle: [],
+      client: []
     }
+  },
+  mounted() {
+    this.fetchService()
   },
   methods: {
     startProcess() {
-      // Logic to start the process
       this.inProgress = true
       this.inSuspension = false
     },
     cancelProcess() {
-      // Logic to cancel the process
       this.inProgress = false
       this.inSuspension = false
     },
     finishProcess() {
-      // Redirect to the next page
       this.$router.push('/')
     },
     startSuspension() {
@@ -193,6 +201,20 @@ export default {
     cancelSuspension() {
       this.inProgress = true
       this.inSuspension = false
+    },
+    async fetchService() {
+      try {
+        const service = await api.get_Service(this.$route.params.id)
+        const serviceDefinition = await api.get_ServiceDefinition(service['service-definitionId'])
+        const vehicle = await api.get_vehicleType(service['vehicleId'])
+        const client = await api.get_Client(vehicle['clientId'])
+        this.service = service
+        this.serviceDefinition = serviceDefinition
+        this.vehicle = vehicle
+        this.client = client
+      } catch (error) {
+        console.error(error)
+      }
     }
   }
 }

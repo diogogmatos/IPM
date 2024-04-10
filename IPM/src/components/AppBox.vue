@@ -3,8 +3,8 @@
     :href="`/services/${id}`"
     class="relative bg-white rounded-2xl border shadow-md p-4 flex flex-col w-96 space-y-2 hover:-translate-y-1 hover:shadow-lg transition-all"
   >
-    <Tag v-if="status === 'Realizado'" color="green" text="Realizado" />
-    <Tag v-else color="red" text="Pendente" />
+    <InfoTag v-if="status === 'Realizado'" color="green" text="Realizado" />
+    <InfoTag v-else color="red" text="Pendente" />
     <div class="flex flex-row items-center space-x-4 justify-between h-full">
       <h1 class="text-2xl font-[600]">
         {{ title }}
@@ -17,10 +17,10 @@
 </template>
 
 <script>
-import Tag from '@/components/Tag.vue'
+import InfoTag from '@/components/InfoTag.vue'
 export default {
   components: {
-    Tag
+    InfoTag
   },
   props: {
     title: String,

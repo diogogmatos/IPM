@@ -17,6 +17,14 @@ export default {
       'inter': ['Inter', 'sans-serif'],
     }
   },
+  safelist: [
+    {
+      pattern: /bg-(primary|red|green|yellow|blue)-100/,      
+    },
+    {
+      pattern: /text-(primary|red|green|yellow|blue)-600/,
+    }
+  ],
   plugins: [],
 }
 

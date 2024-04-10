@@ -1,42 +1,47 @@
 <template>
   <div class="bg-primary w-screen h-screen">
     <div class="flex justify-center items-center h-full">
-      <div class="bg-white p-8 rounded-lg shadow-lg w-1/4 h-2/3 flex flex-col">
+      <div
+        class="flex flex-col justify-between bg-white p-8 rounded-2xl border shadow-md w-1/4 h-[35rem]"
+      >
         <img src="../assets/logo.svg" alt="logo" class="w-36 h-36 mx-auto" />
-        <form class="flex flex-col justify-center my-auto min-h-max">
-          <div class="mt-4">
+        <form class="flex flex-col justify-center h-fit space-y-6">
+          <div>
             <label for="email" class="block text-sm font-medium ml-2">Número</label>
             <input
               placeholder="Número"
               id="number"
               name="number"
-              class="mt-1 block w-full px-3 py-2 border border-neutral-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              class="mt-1 block w-full px-3 py-2 border border-neutral-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
               required
             />
           </div>
-          <div class="mt-4">
+          <div>
             <label for="email" class="block text-sm font-medium ml-2">E-Mail</label>
             <input
               placeholder="E-Mail"
               id="email"
               name="email"
-              class="mt-1 block w-full px-3 py-2 border border-neutral-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              class="mt-1 block w-full px-3 py-2 border border-neutral-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
               required
             />
           </div>
-          <div class="mt-4">
+          <div>
             <label for="password" class="block text-sm font-medium ml-2">Password</label>
             <input
               placeholder="Password"
               type="password"
               id="password"
               name="password"
-              class="mt-1 block w-full px-3 py-2 border border-neutral-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              class="mt-1 block w-full px-3 py-2 border border-neutral-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
               required
             />
           </div>
-          <div class="mt-4">
-            <button type="submit" class="w-full bg-primary text-white p-2 rounded-md">
+          <div class="pt-2">
+            <button
+              type="submit"
+              class="w-full bg-primary text-white p-2 rounded-md hover:bg-opacity-80 transition-all"
+            >
               Registar
             </button>
           </div>

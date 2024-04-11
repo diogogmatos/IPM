@@ -52,7 +52,9 @@ export default {
   methods: {
     async fetchServiceDefinitions() {
       try {
-        this.services = await api.list_ServiceDisplay()
+        this.services = await api
+          .list_ServiceDisplay()
+          .then((res) => res.filter((s) => s.status !== 'realizado'))
         this.originalServices = this.services
       } catch (error) {
         console.error('Error fetching service definitions:', error)

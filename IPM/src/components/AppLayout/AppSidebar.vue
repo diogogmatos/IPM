@@ -1,21 +1,24 @@
 <template>
   <div
-    id="Sidebar"
+    id="AppSidebar"
     class="bg-white min-w-96 rounded-r-3xl pt-12 border-r shadow-lg space-y-12 h-screen overflow-hidden"
   >
-    <img src="../../assets/logo.svg" alt="logo" class="w-32 h-32 mx-auto" />
+    <img src="/src/assets/logo.svg" alt="logo" class="w-32 h-32 mx-auto" />
     <h1 class="text-center text-2xl font-[700]">Posto #1</h1>
     <nav
       class="flex flex-col justify-between font-[600] text-2xl text-neutral-400 h-[calc(100dvh-304px)]"
     >
       <div>
-        <a href="#" class="flex bg-primary/20 p-3 w-full justify-center space-x-3 text-primary">
+        <a
+          href="/"
+          class="flex bg-primary-100 p-3 w-full justify-center space-x-3 text-primary-500"
+        >
           <i class="bi bi-tools"></i>
           <span>Serviços Atribuídos</span>
         </a>
         <a
-          href="#"
-          class="flex bg-neutral-100 p-3 w-full justify-center space-x-3 hover:text-primary hover:bg-primary/20 transition-all"
+          href="/history"
+          class="flex bg-neutral-100 p-3 w-full justify-center space-x-3 hover:text-primary-500 hover:bg-primary-100 transition-all"
         >
           <i class="bi bi-clock-history"></i>
           <span>Histórico Serviços</span>
@@ -24,7 +27,7 @@
       <div>
         <a
           href="#"
-          class="flex bg-neutral-100 p-3 px-12 w-full justify-between hover:text-primary hover:bg-primary/20 transition-all"
+          class="flex bg-neutral-100 p-3 px-12 w-full justify-between hover:text-primary-500 hover:bg-primary-100 transition-all"
         >
           <div class="space-x-3">
             <i class="bi bi-person-fill"></i>

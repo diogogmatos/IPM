@@ -5,8 +5,19 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "#FEA500",
-        primaryHover: "#E59400",
+        primary: {
+          '50': '#fffcea',
+          '100': '#fff5c5',
+          '200': '#ffec85',
+          '300': '#ffdb46',
+          '400': '#ffc81b',
+          '500': '#fea500',
+          '600': '#e27d00',
+          '700': '#bb5602',
+          '800': '#984208',
+          '900': '#7c360b',
+          '950': '#481b00',
+        }
       },
       width:{
         84: "21.5rem",
@@ -19,10 +30,13 @@ export default {
   },
   safelist: [
     {
-      pattern: /bg-(primary|red|green|yellow|blue)-100/,      
+      pattern: /bg-(primary|red|green|yellow|blue|amber|neutral|orange|lime|black|purple)-100/,      
     },
     {
-      pattern: /text-(primary|red|green|yellow|blue)-600/,
+      pattern: /text-(primary|red|green|yellow|blue|amber|neutral|orange|lime|black|purple)-600/,
+    },
+    {
+      pattern: /border-(primary|red|green|yellow|blue|amber|neutral|orange|lime|black|purple)-600/,
     }
   ],
   plugins: [],

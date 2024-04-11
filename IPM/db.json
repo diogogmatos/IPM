@@ -246,7 +246,6 @@
             "vehicleId": "08-25-AA",
             "service-definitionId": "sp",
             "estado": "nafila",
-            "agendamento": "filaDeEspera",
             "descrição": "Colocar XPTO 225R15"
         },
         {
@@ -254,7 +253,6 @@
             "vehicleId": "AH-31-BB",
             "service-definitionId": "li",
             "estado": "programado",
-            "agendamento": "programado",
             "data": {
                 "dia": 26,
                 "mes": 3,
@@ -269,15 +267,13 @@
             "vehicleId": "AH-32-44",
             "service-definitionId": "le",
             "estado": "nafila",
-            "agendamento": "filaDeEspera",
             "descrição": "Ver jantes."
         },
         {
             "id": "s34",
             "vehicleId": "AH-21-25",
             "service-definitionId": "sfc",
-            "estado": "parado",
-            "agendamento": "filaDeEspera",
+            "estado": "suspenso",
             "descrição": "Falta o filtro."
         },
         {
@@ -285,15 +281,13 @@
             "vehicleId": "08-25-AA",
             "service-definitionId": "sp",
             "estado": "realizado",
-            "agendamento": "filaDeEspera",
             "descrição": "Colocar XPTO 225R15"
         },
         {
             "id": "s24",
             "vehicleId": "08-25-AA",
             "service-definitionId": "li",
-            "estado": "realizado",
-            "agendamento": "programado",
+            "estado": "programado",
             "data": {
                 "dia": 2,
                 "mes": 2,

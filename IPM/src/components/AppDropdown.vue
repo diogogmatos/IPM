@@ -1,31 +1,48 @@
 <template>
-  <div class="relative transition ease-in-out delay-150" @click="toggleDropdown">
-    <button
-      v-if="!selectedOption"
-      class="bg-white text-black font-medium px-4 h-12 rounded-2xl min-w-fit text-nowrap shadow-md border"
+  <Menu as="div" class="relative inline-block text-left">
+    <div>
+      <MenuButton
+        class="inline-flex justify-left gap-x-1.5 rounded-2xl bg-white px-4 py-2 text-sm font-semibold text-neutral-900 shadow-md border hover:bg-neutral-100 transition-all w-52 text-nowrap h-12 items-center"
+      >
+        <span class="flex justify-between w-full">
+          {{ selectedOption ? selectedOption : placeholder }}
+          <i class="bi bi-chevron-down -mr-1 text-neutral-400"></i>
+        </span>
+      </MenuButton>
+    </div>
+
+    <transition
+      enter-active-class="transition ease-out duration-100"
+      enter-from-class="transform opacity-0 scale-95"
+      enter-to-class="transform opacity-100 scale-100"
+      leave-active-class="transition ease-in duration-75"
+      leave-from-class="transform opacity-100 scale-100"
+      leave-to-class="transform opacity-0 scale-95"
     >
-      {{ placeholder }} <i class="bi bi-chevron-down"></i>
-    </button>
-    <button v-else class="bg-white text-black font-bold py-2 px-4 rounded">
-      {{ selectedOption }}
-    </button>
-    <div
-      v-if="isOpen"
-      class="absolute mt-2 w-full bg-white border shadow-md rounded-2xl z-10 overflow-hidden"
-    >
-      <ul>
-        <li
+      <MenuItems
+        class="absolute right-0 z-10 mt-2 w-52 overflow-hidden origin-top-right rounded-2xl bg-white shadow-lg border focus:outline-none"
+      >
+        <MenuItem
           v-for="(option, index) in options"
           :key="index"
-          @click="selectOption(option)"
-          class="py-2 px-4 hover:bg-neutral-100 cursor-pointer border-b"
+          @click="toggleOption(option)"
+          v-slot="{ active }"
         >
-          {{ option }}
-        </li>
-      </ul>
-    </div>
-  </div>
+          <a
+            href="#"
+            :class="`
+              ${active ? 'bg-neutral-100 text-neutral-900' : 'text-neutral-700'} ${selectedOption === option && 'bg-neutral-200'} block px-4 py-2 text-sm`"
+            >{{ option }}</a
+          >
+        </MenuItem>
+      </MenuItems>
+    </transition>
+  </Menu>
 </template>
+
+<script setup>
+import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
+</script>
 
 <script>
 export default {
@@ -39,19 +56,20 @@ export default {
       default: () => []
     }
   },
+  emits: ['dropdownChange'],
   data() {
     return {
-      isOpen: false,
       selectedOption: ''
     }
   },
   methods: {
-    toggleDropdown() {
-      this.isOpen = !this.isOpen
-    },
-    selectOption(option) {
-      this.selectedOption = option
-      this.isOpen = false
+    toggleOption(option) {
+      if (this.selectedOption === option) {
+        this.selectedOption = ''
+      } else {
+        this.selectedOption = option
+      }
+      this.$emit('dropdownChange', this.selectedOption)
     }
   }
 }

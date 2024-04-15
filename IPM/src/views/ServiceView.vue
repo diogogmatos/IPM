@@ -6,8 +6,8 @@
       >
         <div class="w-full h-full p-8 overflow-scroll overflow-x-hidden">
           <button
-            v-if="inSuspension"
-            @click="cancelSuspension"
+            v-if="inSuspension || inCanceling"
+            @click="inSuspension ? stopSuspension() : stopCancelProcess()"
             class="bg-primary-500 text-white hover:bg-opacity-80 transition-all p-2 rounded-xl font-semibold text-5xl shadow-sm h-16 w-16 flex items-center justify-center absolute left-8"
           >
             <i class="bi bi-arrow-left-short"></i>
@@ -129,7 +129,12 @@
                 </div>
               </div>
               <div class="space-y-10">
-                <div v-if="service.status === 'suspenso'" class="space-y-3">
+                <div
+                  v-if="
+                    service.status === 'suspenso' && !inProgress && !inSuspension && !inCanceling
+                  "
+                  class="space-y-3"
+                >
                   <h1 class="text-xl font-semibold text-center">Motivo de Suspensão</h1>
                   <p
                     v-if="service.motive && service.motive.length > 0"
@@ -141,12 +146,14 @@
                     Não foi indicado um motivo para a suspensão.
                   </p>
                 </div>
-                <div v-if="inSuspension" class="flex flex-col justify-center mx-40">
+                <div v-if="inSuspension || inCanceling" class="flex flex-col justify-center mx-40">
                   <div class="space-y-3 mx-32">
                     <h1 class="text-xl font-semibold ml-3">Motivo</h1>
                     <textarea
                       class="border rounded-xl w-full h-52 p-4 outline-none focus:border-primary-500 resize-none"
-                      placeholder="Motivo da suspensão..."
+                      :placeholder="
+                        inSuspension ? 'Motivo da suspensão...' : 'Motivo do cancelamento...'
+                      "
                     />
                   </div>
                 </div>
@@ -201,7 +208,7 @@
               <div v-if="!finished" :class="`flex flex-row space-x-4 justify-center px-2`">
                 <!-- botão iniciar/concluir da página inicial de um serviço/página de um serviço em progresso, respetivamente -->
                 <PopConfirm
-                  v-if="!inSuspension"
+                  v-if="!inSuspension && !inCanceling"
                   :title="
                     inProgress
                       ? 'Tem a certeza que pretende concluir o serviço?'
@@ -214,22 +221,29 @@
                 </PopConfirm>
                 <!-- botão suspender da página de suspensão -->
                 <PopConfirm
-                  v-else
+                  v-else-if="inSuspension"
                   :title="'Tem a certeza que pretende suspender o serviço?'"
                   :buttonProps="'w-60 mx-40 h-12'"
-                  :onConfirm="startSuspension"
+                  :onConfirm="() => {}"
                 >
                   Suspender
                 </PopConfirm>
-                <!-- botão cancelar da página inicial do serviço -->
+                <!-- botão cancelar da página de cancelamento -->
                 <PopConfirm
-                  v-if="!inProgress && !inSuspension"
+                  v-else
                   :title="'Tem a certeza que pretende cancelar o serviço?'"
-                  :onConfirm="cancelProcess"
-                  :buttonActive="false"
+                  :buttonProps="'w-60 mx-40 h-12'"
+                  :onConfirm="() => {}"
                 >
                   Cancelar
                 </PopConfirm>
+                <!-- botão cancelar da página inicial de um serviço -->
+                <AppButton
+                  v-if="!inProgress && !inSuspension && !inCanceling"
+                  @click="startCancelProcess"
+                >
+                  Cancelar
+                </AppButton>
                 <!-- botão suspender da página de um serviço em progresso -->
                 <AppButton v-else-if="inProgress" @click="startSuspension"> Suspender </AppButton>
               </div>
@@ -263,6 +277,7 @@ export default {
     return {
       inProgress: false,
       inSuspension: false,
+      inCanceling: false,
       service: [],
       aditional_services: [],
       selected_aditional_services: [],
@@ -284,10 +299,20 @@ export default {
     startProcess() {
       this.inProgress = true
       this.inSuspension = false
+      this.inCanceling = false
     },
-    cancelProcess() {
+    startCancelProcess() {
       this.inProgress = false
       this.inSuspension = false
+      this.inCanceling = true
+    },
+    stopCancelProcess() {
+      this.inProgress = false
+      this.inSuspension = false
+      this.inCanceling = false
+    },
+    cancelProcess() {
+      // cenas
     },
     finishProcess() {
       this.$router.push('/')
@@ -295,10 +320,12 @@ export default {
     startSuspension() {
       this.inProgress = false
       this.inSuspension = true
+      this.inCanceling = false
     },
-    cancelSuspension() {
+    stopSuspension() {
       this.inProgress = true
       this.inSuspension = false
+      this.inCanceling = false
     },
     addService(service) {
       if (service !== '' && !this.selected_aditional_services.includes(service)) {
@@ -331,6 +358,7 @@ export default {
           this.aditional_services = Object.values(this.aditional_services)
             .map((s) => s.descr)
             .sort()
+          this.shown_aditional_services = this.aditional_services
         }
         this.loaded = true
       } catch (error) {

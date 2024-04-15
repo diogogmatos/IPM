@@ -14,7 +14,7 @@
           </button>
           <a
             v-else-if="!inProgress"
-            :href="`${servicesPage ? '/' : historyPage ? '/?history' : ''}`"
+            :href="back_url"
             class="bg-primary-500 text-white hover:bg-opacity-80 transition-all p-2 rounded-xl font-semibold text-5xl shadow-sm h-16 w-16 flex items-center justify-center absolute left-8"
           >
             <i class="bi bi-arrow-left-short"></i>
@@ -30,7 +30,7 @@
                   v-if="!finished"
                   class="border rounded-xl w-full h-52 p-4 outline-none focus:border-primary-500 resize-none"
                   placeholder="Notas a adicionar..."
-                  v-bind="notes"
+                  v-model="notes"
                 />
                 <textarea
                   v-else-if="service.notes && service.notes.length > 0"
@@ -64,7 +64,7 @@
                   v-if="!finished"
                   :customButtonActive="false"
                   :customButtonProps="`w-full h-12`"
-                  :options="shown_aditional_services"
+                  :options="shown_aditional_services.map((s) => s.descr).sort()"
                   :highlightSelected="false"
                   @dropdownChange="addService"
                 >
@@ -154,6 +154,7 @@
                       :placeholder="
                         inSuspension ? 'Motivo da suspensão...' : 'Motivo do cancelamento...'
                       "
+                      v-model="motive"
                     />
                   </div>
                 </div>
@@ -224,7 +225,7 @@
                   v-else-if="inSuspension"
                   :title="'Tem a certeza que pretende suspender o serviço?'"
                   :buttonProps="'w-60 mx-40 h-12'"
-                  :onConfirm="() => {}"
+                  :onConfirm="suspendService"
                 >
                   Suspender
                 </PopConfirm>
@@ -233,7 +234,7 @@
                   v-else
                   :title="'Tem a certeza que pretende cancelar o serviço?'"
                   :buttonProps="'w-60 mx-40 h-12'"
-                  :onConfirm="() => {}"
+                  :onConfirm="cancelProcess"
                 >
                   Cancelar
                 </PopConfirm>
@@ -281,14 +282,17 @@ export default {
       service: [],
       aditional_services: [],
       selected_aditional_services: [],
+      selected_aditional_services_id: [],
       vehicle: [],
       client: [],
       finished: false,
       notes: '',
+      motive: '',
       padNumber: (n, l) => `${n}`.padStart(l, '0'),
       servicesPage: false,
       historyPage: false,
-      loaded: false
+      loaded: false,
+      back_url: ''
     }
   },
   mounted() {
@@ -301,6 +305,16 @@ export default {
       this.inSuspension = false
       this.inCanceling = false
     },
+    async finishProcess() {
+      await api.update_Service(this.service.id, {
+        estado: 'realizado',
+        notas: this.notes,
+        'serviços-adicionais': this.selected_aditional_services.map(
+          (s) => this.aditional_services.find((as) => as.descr === s).id
+        )
+      })
+      window.location.reload()
+    },
     startCancelProcess() {
       this.inProgress = false
       this.inSuspension = false
@@ -311,11 +325,12 @@ export default {
       this.inSuspension = false
       this.inCanceling = false
     },
-    cancelProcess() {
-      // cenas
-    },
-    finishProcess() {
-      this.$router.push('/')
+    async cancelProcess() {
+      await api.update_Service(this.service.id, {
+        estado: 'cancelado',
+        motivo: this.motive
+      })
+      window.location.reload()
     },
     startSuspension() {
       this.inProgress = false
@@ -327,11 +342,18 @@ export default {
       this.inSuspension = false
       this.inCanceling = false
     },
+    async suspendService() {
+      await api.update_Service(this.service.id, {
+        estado: 'suspenso',
+        motivo: this.motive
+      })
+      window.location.reload()
+    },
     addService(service) {
       if (service !== '' && !this.selected_aditional_services.includes(service)) {
         this.selected_aditional_services.push(service)
         this.shown_aditional_services = this.aditional_services.filter(
-          (s) => !this.selected_aditional_services.includes(s)
+          (s) => !this.selected_aditional_services.includes(s.descr)
         )
       }
     },
@@ -340,7 +362,7 @@ export default {
         (s, i) => i !== index
       )
       this.shown_aditional_services = this.aditional_services.filter(
-        (s) => !this.selected_aditional_services.includes(s)
+        (s) => !this.selected_aditional_services.includes(s.descr)
       )
     },
     async fetchService() {
@@ -348,7 +370,11 @@ export default {
         this.service = await api.get_ServiceDisplay(this.$route.params.id)
         this.finished = this.service.status === 'realizado' || this.service.status === 'cancelado'
         this.aditional_services = await api.list_ServiceDefinitions()
-        if (this.finished && this.service.status === 'realizado') {
+        if (
+          this.finished &&
+          this.service.status === 'realizado' &&
+          this.service.aditional_services
+        ) {
           this.selected_aditional_services = this.service.aditional_services
             .map((sid) => this.aditional_services[sid])
             .map((s) => s.descr)
@@ -356,8 +382,6 @@ export default {
           this.shown_aditional_services = this.aditional_services
         } else {
           this.aditional_services = Object.values(this.aditional_services)
-            .map((s) => s.descr)
-            .sort()
           this.shown_aditional_services = this.aditional_services
         }
         this.loaded = true
@@ -373,6 +397,7 @@ export default {
         } else {
           this.servicesPage = true
         }
+        this.back_url = this.servicesPage ? '/' : this.historyPage ? '/?history' : ''
       }
       if (this.$route.fullPath === '/') {
         this.servicesPage = true

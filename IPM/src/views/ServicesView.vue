@@ -68,8 +68,6 @@ export default {
       try {
         this.services = await api.list_ServiceDisplay()
 
-        console.log(this.$route.query.history)
-        console.log(this.$route)
         if (this.$route.query.history !== undefined)
           this.services = this.services.filter(
             (s) => s.status === 'realizado' || s.status === 'cancelado'

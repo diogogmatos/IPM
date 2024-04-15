@@ -154,3 +154,8 @@ export async function get_Service(id: string) {
   const data: types.Service = response.data
   return data
 }
+
+export async function update_Service(id: string, service: types.Service) {
+  const response = await API.patch(`/services/${id}`, service)
+  return response.data
+}

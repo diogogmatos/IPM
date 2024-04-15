@@ -28,6 +28,9 @@ export async function list_ServiceDisplay() {
       title: serviceDefinition.descr,
       time: serviceDefinition.duração,
       status: service.estado,
+      notes: service.notas,
+      motive: service.motivo,
+      aditional_services: service['serviços-adicionais'],
       date:
         service.data &&
         new Date(
@@ -63,6 +66,9 @@ export async function get_ServiceDisplay(id: string) {
     title: serviceDefinition.descr,
     time: serviceDefinition.duração,
     status: service.estado,
+    notes: service.notas,
+    motive: service.motivo,
+    aditional_services: service['serviços-adicionais'],
     date:
       service.data &&
       new Date(

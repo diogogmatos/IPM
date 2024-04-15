@@ -11,14 +11,14 @@
       <div>
         <a
           href="/"
-          class="flex bg-primary-100 p-3 w-full justify-center space-x-3 text-primary-500"
+          :class="`flex bg-neutral-100 p-3 w-full justify-center space-x-3 hover:text-primary-500 hover:bg-primary-100 transition-all ${services && 'text-primary-500 bg-primary-100'}`"
         >
           <i class="bi bi-tools"></i>
           <span>Serviços Atribuídos</span>
         </a>
         <a
-          href="/history"
-          class="flex bg-neutral-100 p-3 w-full justify-center space-x-3 hover:text-primary-500 hover:bg-primary-100 transition-all"
+          href="/?history"
+          :class="`flex bg-neutral-100 p-3 w-full justify-center space-x-3 hover:text-primary-500 hover:bg-primary-100 transition-all ${history && 'text-primary-500 bg-primary-100'}`"
         >
           <i class="bi bi-clock-history"></i>
           <span>Histórico Serviços</span>
@@ -26,8 +26,8 @@
       </div>
       <div>
         <a
-          href="#"
-          class="flex bg-neutral-100 p-3 px-12 w-full justify-between hover:text-primary-500 hover:bg-primary-100 transition-all"
+          href="/profile"
+          :class="`flex bg-neutral-100 p-3 px-12 w-full justify-between space-x-3 hover:text-primary-500 hover:bg-primary-100 transition-all ${this.$route.fullPath === '/profile' && 'text-primary-500 bg-primary-100'}`"
         >
           <div class="space-x-3">
             <i class="bi bi-person-fill"></i>
@@ -48,5 +48,35 @@
 </template>
 
 <script lang="ts">
-export default {}
+import * as api from '../../api.ts'
+
+export default {
+  data() {
+    return {
+      services: false,
+      history: false
+    }
+  },
+  methods: {
+    async checkPage() {
+      if (this.$route.params.id) {
+        const service = await api.get_Service(this.$route.params.id)
+        if (service.estado === 'realizado' || service.estado === 'cancelado') {
+          this.history = true
+        } else {
+          this.services = true
+        }
+      }
+      if (this.$route.fullPath === '/') {
+        this.services = true
+      }
+      if (this.$route.fullPath.includes('?history')) {
+        this.history = true
+      }
+    }
+  },
+  mounted() {
+    this.checkPage()
+  }
+}
 </script>

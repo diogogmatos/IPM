@@ -3,6 +3,9 @@ export type ServiceDisplay = {
   title: string
   time: number
   status: string
+  notes: string
+  motive: string
+  aditional_services: string[]
   date: Date
   description: string
   client_name: string
@@ -63,6 +66,9 @@ export type Service = {
   vehicleId: string
   'service-definitionId': string
   estado: string
+  notas: string
+  motivo: string
+  'serviços-adicionais': string[]
   data: {
     dia: number
     mes: number

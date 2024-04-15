@@ -245,7 +245,7 @@
             "id": "s31",
             "vehicleId": "08-25-AA",
             "service-definitionId": "sp",
-            "estado": "nafila",
+            "estado": "pendente",
             "descrição": "Colocar XPTO 225R15"
         },
         {
@@ -266,7 +266,7 @@
             "id": "s33",
             "vehicleId": "AH-32-44",
             "service-definitionId": "le",
-            "estado": "nafila",
+            "estado": "pendente",
             "descrição": "Ver jantes."
         },
         {
@@ -274,13 +274,22 @@
             "vehicleId": "AH-21-25",
             "service-definitionId": "sfc",
             "estado": "suspenso",
-            "descrição": "Falta o filtro."
+            "motivo": "Falta o filtro."
         },
         {
             "id": "s12",
             "vehicleId": "08-25-AA",
             "service-definitionId": "sp",
             "estado": "realizado",
+            "notas": "Cliente deve encher novos pneus a uma pressão de 2.6 bar para melhor durabilidade.",
+            "serviços-adicionais": ["cr", "ad"],
+            "data": {
+                "dia": 1,
+                "mes": 1,
+                "ano": 2024,
+                "hora": 14,
+                "minutos": 15
+            },
             "descrição": "Colocar XPTO 225R15"
         },
         {
@@ -296,6 +305,21 @@
                 "minutos": 15
             },
             "descrição": "shampoo XPTO"
+        },
+        {
+            "id": "s25",
+            "vehicleId": "08-25-AA",
+            "service-definitionId": "sfah",
+            "estado": "cancelado",
+            "motivo": "falta de peça",
+            "data": {
+                "dia": 2,
+                "mes": 2,
+                "ano": 2024,
+                "hora": 14,
+                "minutos": 15
+            },
+            "descrição": ""
         }
     ]
 }

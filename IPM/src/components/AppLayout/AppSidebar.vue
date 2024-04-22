@@ -9,39 +9,39 @@
       class="flex flex-col justify-between font-[600] text-2xl text-neutral-400 h-[calc(100dvh-304px)]"
     >
       <div>
-        <a
-          href="/"
+        <router-link
+          to="/"
           :class="`flex bg-neutral-100 p-3 w-full justify-center space-x-3 hover:text-primary-500 hover:bg-primary-100 transition-all ${services && 'text-primary-500 bg-primary-100'}`"
         >
           <i class="bi bi-tools"></i>
           <span>Serviços Atribuídos</span>
-        </a>
-        <a
-          href="/?history"
+        </router-link>
+        <router-link
+          to="/?history"
           :class="`flex bg-neutral-100 p-3 w-full justify-center space-x-3 hover:text-primary-500 hover:bg-primary-100 transition-all ${history && 'text-primary-500 bg-primary-100'}`"
         >
           <i class="bi bi-clock-history"></i>
           <span>Histórico Serviços</span>
-        </a>
+        </router-link>
       </div>
       <div>
-        <a
-          href="/profile"
-          :class="`flex bg-neutral-100 p-3 px-12 w-full justify-between space-x-3 hover:text-primary-500 hover:bg-primary-100 transition-all ${this.$route.fullPath === '/profile' && 'text-primary-500 bg-primary-100'}`"
+        <router-link
+          to="/profile"
+          :class="`flex bg-neutral-100 p-3 px-12 w-full justify-between space-x-3 hover:text-primary-500 hover:bg-primary-100 transition-all ${$route.fullPath === '/profile' && 'text-primary-500 bg-primary-100'}`"
         >
           <div class="space-x-3">
             <i class="bi bi-person-fill"></i>
-            <span>Diogo Matos</span>
+            <span>{{ session.name }}</span>
           </div>
           <span class="font-inter">-></span>
-        </a>
-        <a
-          href="#"
+        </router-link>
+        <button
+          @click="logout"
           class="flex bg-red-100 text-red-600 p-3 px-12 w-full space-x-3 hover:text-white hover:bg-red-600 transition-all"
         >
           <i class="bi bi-door-open-fill"></i>
           <span>Sair</span>
-        </a>
+        </button>
       </div>
     </nav>
   </div>
@@ -49,18 +49,20 @@
 
 <script lang="ts">
 import * as api from '../../api.ts'
+import { useSessionStorage } from '@/stores/session.ts'
 
 export default {
   data() {
     return {
       services: false,
-      history: false
+      history: false,
+      session: useSessionStorage()
     }
   },
   methods: {
     async checkPage() {
       if (this.$route.params.id) {
-        const service = await api.get_Service(this.$route.params.id)
+        const service = await api.get_Service(this.$route.params.id as string)
         if (service.estado === 'realizado' || service.estado === 'cancelado') {
           this.history = true
         } else {
@@ -73,6 +75,10 @@ export default {
       if (this.$route.fullPath.includes('?history')) {
         this.history = true
       }
+    },
+    logout() {
+      this.session.logout()
+      this.$router.push('/login')
     }
   },
   mounted() {

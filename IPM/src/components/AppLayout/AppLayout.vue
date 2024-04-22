@@ -7,7 +7,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import AppSidebar from './AppSidebar.vue'
 
 export default {

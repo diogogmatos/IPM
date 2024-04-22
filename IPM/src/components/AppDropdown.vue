@@ -35,12 +35,12 @@
             @click="toggleOption(option)"
             v-slot="{ active }"
           >
-            <a
-              href="#"
+            <div
               :class="`
-              ${active ? 'bg-neutral-100 text-neutral-900' : 'text-neutral-700'} ${selectedOption === option && highlightSelected && 'bg-neutral-200'} block px-4 py-2 text-sm`"
-              >{{ option }}</a
+              ${active ? 'bg-neutral-100 text-neutral-900' : 'text-neutral-700'} ${selectedOption === option && highlightSelected && 'bg-neutral-200'} block px-4 py-2 text-sm select-none`"
             >
+              {{ option }}
+            </div>
           </MenuItem>
         </div>
       </MenuItems>
@@ -48,12 +48,13 @@
   </Menu>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
 import AppButton from '@/components/AppButton.vue'
+import type { PropType } from 'vue'
 </script>
 
-<script>
+<script lang="ts">
 export default {
   props: {
     placeholder: {
@@ -61,7 +62,7 @@ export default {
       default: 'Select an option'
     },
     options: {
-      type: Array,
+      type: Array as PropType<string[]>,
       default: () => []
     },
     customButtonProps: {
@@ -84,7 +85,7 @@ export default {
     }
   },
   methods: {
-    toggleOption(option) {
+    toggleOption(option: string) {
       if (this.selectedOption === option) {
         this.selectedOption = ''
       } else {

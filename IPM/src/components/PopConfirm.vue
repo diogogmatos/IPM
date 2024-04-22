@@ -18,11 +18,11 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import AppButton from '@/components/AppButton.vue'
 </script>
 
-<script>
+<script lang="ts">
 export default {
   data() {
     return {

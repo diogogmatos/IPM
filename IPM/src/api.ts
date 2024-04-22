@@ -25,12 +25,14 @@ export async function list_ServiceDisplay() {
 
     display.push({
       id: service.id,
+      service_type: service['service-definitionId'],
       title: serviceDefinition.descr,
       time: serviceDefinition.duração,
       status: service.estado,
       notes: service.notas,
       motive: service.motivo,
       aditional_services: service['serviços-adicionais'],
+      employee: service.idFuncionario,
       date:
         service.data &&
         new Date(
@@ -63,12 +65,14 @@ export async function get_ServiceDisplay(id: string) {
 
   return {
     id: service.id,
+    service_type: service['service-definitionId'],
     title: serviceDefinition.descr,
     time: serviceDefinition.duração,
     status: service.estado,
     notes: service.notas,
     motive: service.motivo,
     aditional_services: service['serviços-adicionais'],
+    employee: service.idFuncionario,
     date:
       service.data &&
       new Date(
@@ -83,8 +87,7 @@ export async function get_ServiceDisplay(id: string) {
     client_email: client.email,
     client_phone: client.telefone,
     vehicleId: vehicle.id,
-    vehicle_type:
-      vehicle['vehicle-typeId'].charAt(0).toUpperCase() + vehicle['vehicle-typeId'].slice(1),
+    vehicle_type: vehicle['vehicle-typeId'],
     vehicle_torque: vehicle.cilindrada,
     vehicle_power: vehicle.potencia,
     vehicle_kms: vehicle.kms
@@ -123,6 +126,22 @@ export async function get_Vehicle(id: string) {
   return data
 }
 
+export async function get_VehicleType(type: string) {
+  const response = await API.get(`/vehicle-types/${type}`)
+  const data: types.VehicleType = response.data
+  return data
+}
+
+export async function list_VehicleTypes() {
+  const response = await API.get('/vehicle-types')
+  const data: types.VehicleType[] = response.data
+  const dict: types.VehicleTypeDict = {}
+  data.forEach((item) => {
+    dict[item.id] = item
+  })
+  return dict
+}
+
 export async function list_Clients() {
   const response = await API.get('/clients')
   const data: types.Client[] = response.data
@@ -155,7 +174,42 @@ export async function get_Service(id: string) {
   return data
 }
 
-export async function update_Service(id: string, service: types.Service) {
+export async function update_Service(id: string, service: { [key: string]: any }) {
   const response = await API.patch(`/services/${id}`, service)
   return response.data
+}
+
+export async function login_Employee(id: string, password: string) {
+  try {
+    const response = await API.get(`/employees/${id}`)
+    const data: types.Employee = response.data
+
+    if (data.password === password) {
+      return {
+        id: data.id,
+        name: data.nome,
+        type: data.especialidade
+      }
+    } else {
+      return false
+    }
+  } catch (error) {
+    return false
+  }
+}
+
+export async function change_EmployeePassword(id: string, password: string, newPassword: string) {
+  try {
+    const response = await API.get(`/employees/${id}`)
+    const data: types.Employee = response.data
+
+    if (data.password === password) {
+      const response = await API.patch(`/employees/${id}`, { password: newPassword })
+      return response.data
+    } else {
+      return false
+    }
+  } catch (error) {
+    return false
+  }
 }

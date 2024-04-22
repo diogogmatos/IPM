@@ -1,12 +1,14 @@
 export type ServiceDisplay = {
   id: string
+  service_type: string
   title: string
   time: number
   status: string
-  notes: string
-  motive: string
-  aditional_services: string[]
-  date: Date
+  notes?: string
+  motive?: string
+  aditional_services?: string[]
+  employee?: string
+  date?: Date
   description: string
   client_name: string
   client_email: string
@@ -69,6 +71,7 @@ export type Service = {
   notas: string
   motivo: string
   'serviços-adicionais': string[]
+  idFuncionario: string
   data: {
     dia: number
     mes: number
@@ -81,4 +84,11 @@ export type Service = {
 
 export type ServiceDict = {
   [key: string]: Service
+}
+
+export type Employee = {
+  id: string
+  nome: string
+  especialidade: string
+  password: string
 }

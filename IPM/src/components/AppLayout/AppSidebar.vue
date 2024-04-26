@@ -11,14 +11,14 @@
       <div>
         <router-link
           to="/"
-          :class="`flex bg-neutral-100 p-3 w-full justify-center space-x-3 hover:text-primary-500 hover:bg-primary-100 transition-all ${services && 'text-primary-500 bg-primary-100'}`"
+          :class="`flex bg-neutral-100 p-3 w-full justify-center space-x-3 hover:text-primary-500 transition-all ${services && 'text-primary-500 bg-primary-100'}`"
         >
           <i class="bi bi-tools"></i>
           <span>Serviços Atribuídos</span>
         </router-link>
         <router-link
           to="/?history"
-          :class="`flex bg-neutral-100 p-3 w-full justify-center space-x-3 hover:text-primary-500 hover:bg-primary-100 transition-all ${history && 'text-primary-500 bg-primary-100'}`"
+          :class="`flex bg-neutral-100 p-3 w-full justify-center space-x-3 hover:text-primary-500 transition-all ${history && 'text-primary-500 bg-primary-100'}`"
         >
           <i class="bi bi-clock-history"></i>
           <span>Histórico Serviços</span>
@@ -27,7 +27,7 @@
       <div>
         <router-link
           to="/profile"
-          :class="`flex bg-neutral-100 p-3 px-12 w-full justify-between space-x-3 hover:text-primary-500 hover:bg-primary-100 transition-all ${$route.fullPath === '/profile' && 'text-primary-500 bg-primary-100'}`"
+          :class="`flex bg-neutral-100 p-3 px-12 w-full justify-between space-x-3 hover:text-primary-500 transition-all ${$route.fullPath === '/profile' && 'text-primary-500 bg-primary-100'}`"
         >
           <div class="space-x-3">
             <i class="bi bi-person-fill"></i>

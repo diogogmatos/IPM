@@ -100,16 +100,12 @@ export default {
   },
   methods: {
     async changePassword() {
-      const r = await api.change_EmployeePassword(
-        this.session.id,
-        this.session.name,
-        this.session.type
-      )
+      const r = await api.change_EmployeePassword(this.session.id, this.password, this.newPassword)
       if (r) {
-        alert('Password changed successfully!')
+        alert('Password alterada com sucesso!')
         this.changingPassword = false
       } else {
-        alert('Invalid password!')
+        alert('Password atual inválida!')
       }
     }
   }

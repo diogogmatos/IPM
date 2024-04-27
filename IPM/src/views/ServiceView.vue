@@ -101,12 +101,18 @@
               >
                 {{ service.description }}
               </h2>
-              <div :class="`flex flex-col space-y-6 w-fit border-b pb-12 mx-auto`">
-                <div className="flex flex-row space-x-4">
+              <div class="flex flex-col space-y-6 w-fit border-b pb-12 mx-auto">
+                <div className="flex flex-row gap-4 flex-wrap w-full justify-center">
                   <InfoTag color="primary">
                     <i class="bi bi-info-circle"></i> {{ service.id }}
                   </InfoTag>
-                  <InfoTag v-if="service.status === 'realizado'" color="green">Realizado</InfoTag>
+                  <InfoTag v-if="service.status === 'realizado'" color="green"
+                    >Realizado ·
+                    {{
+                      service.date &&
+                      `${padNumber(service.date.getDate(), 2)}/${padNumber(service.date.getMonth(), 2)} · ${padNumber(service.date.getHours(), 2)}:${padNumber(service.date.getMinutes(), 2)}h`
+                    }}</InfoTag
+                  >
                   <InfoTag v-else-if="service.status === 'pendente'" color="yellow"
                     >Pendente</InfoTag
                   >
@@ -114,18 +120,22 @@
                     >Programado ·
                     {{
                       service.date &&
-                      `${padNumber(service.date.getDate(), 2)}/${padNumber(service.date.getMonth() + 1, 2)} · ${service.date.getHours()}:${service.date.getMinutes()}h`
+                      `${padNumber(service.date.getDate(), 2)}/${padNumber(service.date.getMonth(), 2)} · ${padNumber(service.date.getHours(), 2)}:${padNumber(service.date.getMinutes(), 2)}h`
                     }}</InfoTag
                   >
                   <InfoTag v-else-if="service.status === 'suspenso'" color="red"
                     >Suspenso ·
                     {{
                       service.date &&
-                      `${padNumber(service.date.getDate(), 2)}/${padNumber(service.date.getMonth() + 1, 2)} · ${service.date.getHours()}:${service.date.getMinutes()}h`
+                      `${padNumber(service.date.getDate(), 2)}/${padNumber(service.date.getMonth(), 2)} · ${padNumber(service.date.getHours(), 2)}:${padNumber(service.date.getMinutes(), 2)}h`
                     }}</InfoTag
                   >
                   <InfoTag v-else-if="service.status === 'cancelado'" color="red"
-                    >Cancelado</InfoTag
+                    >Cancelado ·
+                    {{
+                      service.date &&
+                      `${padNumber(service.date.getDate(), 2)}/${padNumber(service.date.getMonth(), 2)} · ${padNumber(service.date.getHours(), 2)}:${padNumber(service.date.getMinutes(), 2)}h`
+                    }}</InfoTag
                   >
                   <InfoTag color="neutral">
                     <i class="bi bi-hourglass-split"></i> {{ service.time }}min
@@ -325,7 +335,14 @@ export default {
           )
           return as ? as.id : null
         }),
-        idFuncionario: session.$state.id
+        idFuncionario: session.$state.id,
+        data: {
+          dia: new Date().getDate(),
+          mes: new Date().getMonth() + 1,
+          ano: new Date().getFullYear(),
+          hora: new Date().getHours(),
+          minutos: new Date().getMinutes()
+        }
       })
       window.location.reload()
     },
@@ -342,7 +359,15 @@ export default {
     async cancelProcess() {
       await api.update_Service(this.service.id, {
         estado: 'cancelado',
-        motivo: this.motive
+        motivo: this.motive,
+        data: {
+          dia: new Date().getDate(),
+          mes: new Date().getMonth() + 1,
+          ano: new Date().getFullYear(),
+          hora: new Date().getHours(),
+          minutos: new Date().getMinutes()
+        },
+        idFuncionario: session.$state.id
       })
       window.location.reload()
     },
@@ -368,7 +393,8 @@ export default {
           ano: now.getFullYear(),
           hora: now.getHours(),
           minutos: now.getMinutes()
-        }
+        },
+        idFuncionario: session.$state.id
       })
       window.location.reload()
     },

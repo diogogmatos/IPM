@@ -245,7 +245,7 @@
       "id": "s31",
       "vehicleId": "08-25-AA",
       "service-definitionId": "sp",
-      "estado": "realizado",
+      "estado": "pendente",
       "descrição": "Colocar XPTO 225R15",
       "notas": "",
       "serviços-adicionais": [],
@@ -255,42 +255,59 @@
       "id": "s32",
       "vehicleId": "AH-31-BB",
       "service-definitionId": "li",
-      "estado": "suspenso",
+      "estado": "programado",
       "data": {
-        "dia": 26,
-        "mes": 2,
+        "dia": 30,
+        "mes": 4,
         "ano": 2024,
-        "hora": 14,
-        "minutos": 15
+        "hora": 18,
+        "minutos": 38
       },
-      "descrição": "Atenção ao banco do condutor.",
-      "motivo": "Aspirador em manutenção."
+      "descrição": "Atenção ao banco do condutor."
     },
     {
       "id": "s33",
       "vehicleId": "AH-32-44",
       "service-definitionId": "le",
-      "estado": "pendente",
-      "descrição": "Ver jantes."
+      "estado": "cancelado",
+      "descrição": "Ver jantes.",
+      "motivo": "",
+      "data": {
+        "dia": 27,
+        "mes": 4,
+        "ano": 2024,
+        "hora": 18,
+        "minutos": 42
+      }
     },
     {
       "id": "s50",
       "vehicleId": "AH-32-44",
       "service-definitionId": "mot",
-      "estado": "programado",
+      "estado": "realizado",
       "data": {
-        "dia": 24,
+        "dia": 27,
         "mes": 4,
         "ano": 2024,
-        "hora": 10,
-        "minutos": 10
-      }
+        "hora": 18,
+        "minutos": 30
+      },
+      "notas": "",
+      "serviços-adicionais": [],
+      "idFuncionario": "julio@esideal.pt"
     },
     {
       "id": "s34",
       "vehicleId": "AH-21-25",
       "service-definitionId": "sfc",
       "estado": "realizado",
+      "data": {
+        "dia": 22,
+        "mes": 4,
+        "ano": 2024,
+        "hora": 10,
+        "minutos": 30
+      },
       "motivo": "Falta o filtro.",
       "notas": "",
       "serviços-adicionais": [
@@ -361,7 +378,7 @@
       "id": "mario@esideal.pt",
       "nome": "Mário Rodrigues",
       "especialidade": "gasolina",
-      "password": "6789"
+      "password": "5678"
     },
     {
       "id": "julio@esideal.pt",

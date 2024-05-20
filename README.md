@@ -1,10 +1,12 @@
-# E. S. Ideal
+# E.S. Ideal
 
 > Internal service management platform, developed with Vue.js, TypeScript, and JSON Server.
 
-This project was developed as a part of the Interface Pessoa-Máquina (IPM), during the second semester of the Software Engineering Bachelors degree at University of Minho.
+This project was developed as part of the Interface Pessoa-Máquina (IPM) subject during the second semester of the Software Engineering Bachelor's degree at the University of Minho.
 
-The objective was to create an internal management platform for the service station E. S. Ideal (Estação de Serviço Ideal) that allowed station mechanics of different specialities to handle all the requested services quickly and easily. The main focus was to create a user-friendly interface that followed good practices strictly and implemented principles like the _Shneiderman’s 8 Golden Rules_, the _Nielsen Heuristics_ and other common guidelines.
+The objective was to create an internal management platform for the service station E.S. Ideal (Estação de Serviço Ideal) that allowed station mechanics of different specialties to handle all requested services quickly and easily. The main focus was to create a user-friendly interface that strictly followed good practices and implemented principles like Shneiderman’s 8 Golden Rules," "Nielsen Heuristics," and other common guidelines.
+
+The actual implementation seen here was preceded by the development of the user-interface prototype in **Figma**, which you can check out [here](https://www.figma.com/design/PxCISzPiymy9MbwOunxaFW/ESIdeal?node-id=0%3A1&t=j4vPrKGpFEGI9uQU-1).
 
 ## Results
 

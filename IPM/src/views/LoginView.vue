@@ -63,7 +63,7 @@ export default {
         session.login(token.id, token.name, token.type)
         this.$router.push('/')
       } else {
-        alert('Invalid email or password!')
+        alert('Password ou email inválidos!')
       }
     }
   }

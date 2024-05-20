@@ -245,25 +245,38 @@
       "id": "s31",
       "vehicleId": "08-25-AA",
       "service-definitionId": "sp",
-      "estado": "pendente",
+      "estado": "realizado",
       "descrição": "Colocar XPTO 225R15",
       "notas": "",
       "serviços-adicionais": [],
-      "idFuncionario": "mario@esideal.pt"
+      "idFuncionario": "diogo@esideal.pt",
+      "data": {
+        "dia": 9,
+        "mes": 5,
+        "ano": 2024,
+        "hora": 15,
+        "minutos": 31
+      }
     },
     {
       "id": "s32",
       "vehicleId": "AH-31-BB",
       "service-definitionId": "li",
-      "estado": "programado",
+      "estado": "realizado",
       "data": {
-        "dia": 30,
-        "mes": 4,
+        "dia": 9,
+        "mes": 5,
         "ano": 2024,
-        "hora": 18,
-        "minutos": 38
+        "hora": 15,
+        "minutos": 34
       },
-      "descrição": "Atenção ao banco do condutor."
+      "descrição": "Atenção ao banco do condutor.",
+      "notas": "notas",
+      "serviços-adicionais": [
+        "ad",
+        "li"
+      ],
+      "idFuncionario": "diogo@esideal.pt"
     },
     {
       "id": "s33",
@@ -278,7 +291,8 @@
         "ano": 2024,
         "hora": 18,
         "minutos": 42
-      }
+      },
+      "idFuncionario": "mario@esideal.pt"
     },
     {
       "id": "s50",
@@ -348,7 +362,8 @@
         "minutos": 15
       },
       "descrição": "shampoo XPTO",
-      "motivo": "shampoo XPTO sem stock por tempo indefenido"
+      "motivo": "shampoo XPTO sem stock por tempo indefenido",
+      "idFuncionario": "diogo@esideal.pt"
     },
     {
       "id": "s25",
@@ -365,6 +380,148 @@
       },
       "descrição": "",
       "idFuncionario": "mario@esideal.pt"
+    },
+    {
+      "id": "s51",
+      "vehicleId": "08-25-AA",
+      "service-definitionId": "sfp",
+      "estado": "realizado",
+      "data": {
+        "dia": 5,
+        "mes": 5,
+        "ano": 2024,
+        "hora": 10,
+        "minutos": 45
+      },
+      "descrição": "Substituição do filtro de partículas",
+      "idFuncionario": "julio@esideal.pt"
+    },
+    {
+      "id": "s52",
+      "vehicleId": "AH-31-BB",
+      "service-definitionId": "li",
+      "estado": "realizado",
+      "data": {
+        "dia": 7,
+        "mes": 5,
+        "ano": 2024,
+        "hora": 14,
+        "minutos": 20
+      },
+      "descrição": "Limpeza interna profunda",
+      "notas": "Cliente solicitou limpeza detalhada dos bancos e tapetes",
+      "serviços-adicionais": [
+        "scc",
+        "sfam"
+      ],
+      "idFuncionario": "julio@esideal.pt"
+    },
+    {
+      "id": "s53",
+      "vehicleId": "AH-32-44",
+      "service-definitionId": "sfah",
+      "estado": "suspenso",
+      "motivo": "Peça encomendada está em falta no fornecedor",
+      "data": {
+        "dia": 10,
+        "mes": 5,
+        "ano": 2024,
+        "hora": 9,
+        "minutos": 30
+      }
+    },
+    {
+      "id": "s54",
+      "vehicleId": "AH-21-25",
+      "service-definitionId": "mot",
+      "estado": "realizado",
+      "data": {
+        "dia": 8,
+        "mes": 5,
+        "ano": 2024,
+        "hora": 11,
+        "minutos": 15
+      },
+      "descrição": "Mudança de óleo do motor",
+      "notas": "Realizada troca de óleo sintético",
+      "serviços-adicionais": [
+        "sfo",
+        "sfc"
+      ],
+      "idFuncionario": "diogo@esideal.pt"
+    },
+    {
+      "id": "s56",
+      "vehicleId": "AH-21-25",
+      "service-definitionId": "ad",
+      "estado": "programado",
+      "data": {
+        "dia": 15,
+        "mes": 5,
+        "ano": 2024,
+        "hora": 9,
+        "minutos": 30
+      }
+    },
+    {
+      "id": "s57",
+      "vehicleId": "08-25-AA",
+      "service-definitionId": "sct",
+      "estado": "pendente"
+    },
+    {
+      "id": "s58",
+      "vehicleId": "AH-31-BB",
+      "service-definitionId": "le",
+      "descrição": "Atenção às jantes",
+      "estado": "programado",
+      "data": {
+        "dia": 20,
+        "mes": 5,
+        "ano": 2024,
+        "hora": 14,
+        "minutos": 45
+      }
+    },
+    {
+      "id": "s59",
+      "vehicleId": "AH-32-44",
+      "service-definitionId": "scc",
+      "estado": "pendente"
+    },
+    {
+      "id": "s60",
+      "vehicleId": "08-25-AA",
+      "service-definitionId": "mom",
+      "estado": "suspenso",
+      "data": {
+        "dia": 9,
+        "mes": 5,
+        "ano": 2024,
+        "hora": 15,
+        "minutos": 33
+      },
+      "motivo": "motivo",
+      "idFuncionario": "diogo@esideal.pt"
+    },
+    {
+      "id": "s61",
+      "vehicleId": "AH-21-25",
+      "service-definitionId": "sva",
+      "estado": "pendente"
+    },
+    {
+      "id": "s62",
+      "vehicleId": "AH-31-BB",
+      "service-definitionId": "sfp",
+      "estado": "programado",
+      "data": {
+        "dia": 28,
+        "mes": 5,
+        "ano": 2024,
+        "hora": 10,
+        "minutos": 0
+      }
     }
   ],
   "employees": [

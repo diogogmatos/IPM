@@ -2,7 +2,7 @@
 
 > Internal service management platform, developed with Vue.js, TypeScript, and JSON Server.
 
-This project was developed as part of the Interface Pessoa-Máquina (IPM) subject during the second semester of the Software Engineering Bachelor's degree at the University of Minho.
+This project was developed as part of the Interface Pessoa-Máquina (IPM) subject during the second semester of the final year of the Software Engineering Bachelor's degree at the University of Minho.
 
 The objective was to create an internal management platform for the service station E.S. Ideal (Estação de Serviço Ideal) that allowed station mechanics of different specialties to handle all requested services quickly and easily. The main focus was to create a user-friendly interface that strictly followed good practices and implemented principles like Shneiderman’s 8 Golden Rules," "Nielsen Heuristics," and other common guidelines.
 
